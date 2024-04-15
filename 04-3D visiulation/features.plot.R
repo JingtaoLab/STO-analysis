@@ -1,15 +1,15 @@
-setwd("E:/project/CS7/bin50_new/figures/figureS2/")
-load("E:/project/CS7/bin50_new/cluster_RDS/CS7.rds")
-cs7_2$final=Idents(cs7_2)
+
+load("CS8.rds")
+cs8_2$final=Idents(cs8_2)
 
 genes=c( "SOX2", "SOX17",'BMP4', "GABRP", "TBXT","NANOS3","SHH","IGF2")
-exp=FetchData(cs7_2,genes)
+exp=FetchData(cs8_2,genes)
 exp$barcode=rownames(exp)
 
 exp1=reshape2::melt(exp)
 exp2=subset(exp1,value>0)
 
-data=cs7_2@meta.data
+data=cs8_2@meta.data
 data1=merge(data,exp2,by="barcode",all=T)
 
 library(RColorBrewer)
